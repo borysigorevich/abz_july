@@ -1,8 +1,7 @@
 import React from 'react';
-import {Container, Typography, Box} from '@common'
+import {Container, Typography, Box, Image} from '@common'
 import {Button} from '@components'
 
-import {BgImage} from './BgImage'
 import * as styles from './DescriptionStyles'
 
 export const Description = () => {
@@ -10,7 +9,14 @@ export const Description = () => {
     return (
         <Box sx={styles.Box}>
             <Box sx={styles.Background}/>
-            <BgImage/>
+            <Image
+                className={'bg-image'}
+                objectFit={'cover'}
+                alt={'bg-image'}
+                layout={'fill'}
+                priority={true}
+                src={'/pexels-alexandr-podvalny-1227513.jpeg'}
+            />
             <Container sx={styles.Container}>
                 <Typography variant={'h1'} sx={styles.Title}>Test assignment for front-end developer</Typography>
                 <Typography variant={'body1'} sx={styles.Text}>What defines a good front-end developer is one that has
