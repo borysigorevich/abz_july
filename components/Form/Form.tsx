@@ -236,7 +236,11 @@ export const Form = ({usersQuantityToShowRef}: FormType) => {
                             label={'Upload'}
                         />
                         <Box
-                            sx={styles.getFileNameBox(!!errors.photo)}>{photoName ? photoName : 'Upload your photo'}</Box>
+                            sx={styles.getFileNameBox(!!errors.photo)}>
+                            <Typography>
+                                {photoName ? photoName : 'Upload your photo'}
+                            </Typography>
+                        </Box>
                         <Box sx={styles.FileHelperText}>{errors.photo?.message}</Box>
                     </FormControl>
 
