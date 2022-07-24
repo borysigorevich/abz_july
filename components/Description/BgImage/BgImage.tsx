@@ -1,22 +1,15 @@
 import React from 'react';
-import {Box, Image} from '@common'
+import {Image} from '@common'
 
-import * as styles from './BgImageStyles'
-
-type BgImageProps = {
-    width?: number
-    height?: number
-}
-
-export const BgImage = ({width, height}: BgImageProps) => {
+export const BgImage = () => {
     return (
-        <Box sx={styles.Box}>
-            {width && height && <Image
-                objectFit={'cover'}
-                src={'/pexels-alexandr-podvalny-1227513.jpeg'}
-                width={width}
-                height={height}
-            />}
-        </Box>
-    );
+        <Image
+            className={'bg-image'}
+            objectFit={'cover'}
+            alt={'bg-image'}
+            layout={'fill'}
+            src={'/pexels-alexandr-podvalny-1227513.jpeg'}
+        />
+    )
+
 };
