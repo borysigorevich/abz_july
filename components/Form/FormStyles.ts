@@ -1,6 +1,7 @@
 import {SxProps} from '@mui/material/styles'
 
 type getStyles = (error: boolean) => SxProps
+type getFileName = (photo: boolean) => SxProps
 
 export const Container: SxProps = {
     textAlign: 'center',
@@ -75,7 +76,10 @@ export const getFileNameBox: getStyles = (error) => ({
 
     display: 'flex',
     alignItems: 'center',
-    color: '#7e7e7e'
+})
+
+export const getFileName: getFileName = (photo) => ({
+    color: photo ? '#000' : '#7e7e7e'
 })
 
 export const FileHelperText: SxProps = {

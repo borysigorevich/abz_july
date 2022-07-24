@@ -237,7 +237,7 @@ export const Form = ({usersQuantityToShowRef}: FormType) => {
                         />
                         <Box
                             sx={styles.getFileNameBox(!!errors.photo)}>
-                            <Typography>
+                            <Typography sx={styles.getFileName(!!photoName)}>
                                 {photoName ? photoName : 'Upload your photo'}
                             </Typography>
                         </Box>
