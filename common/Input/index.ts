@@ -1,0 +1,1 @@
+export {default as Input} from '@mui/material/Input'
