@@ -14,8 +14,10 @@ export const BgImage = ({width, height}: BgImageProps) => {
             {width && height && <Image
                 objectFit={'cover'}
                 src={'/pexels-alexandr-podvalny-1227513.jpeg'}
+                layout={'fixed'}
                 width={width}
                 height={height}
+                priority={true}
             />}
         </Box>
     );

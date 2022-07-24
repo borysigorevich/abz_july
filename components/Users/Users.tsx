@@ -1,18 +1,18 @@
 import React, {useState, useEffect} from 'react';
 
-import {Container, Typography, Box} from '@common'
+import {Container, Typography, Box, CircularProgress} from '@common'
 import {Button} from '@components'
 import {User} from "@components/Users/User";
 
 import * as styles from './UsersStyels'
 import {useLazyGetUsersQuery, UserType} from "../../services/UserService";
 
-type UsersType = {
-    usersQuantityToShowRef: {current: number}
+export type UsersType = {
+    usersQuantityToShowRef: { current: number }
 }
 
 export const Users = ({usersQuantityToShowRef}: UsersType) => {
-    const [getUsers, {data}] = useLazyGetUsersQuery()
+    const [getUsers, {data, isFetching, isLoading}] = useLazyGetUsersQuery()
     const [users, setUsers] = useState<UserType[]>([])
 
     const handleRefetch = () => {
@@ -30,8 +30,6 @@ export const Users = ({usersQuantityToShowRef}: UsersType) => {
         getUsers({count: 6})
     }, [])
 
-    // spacing={{xs: 2.5, md: 2, lg: 3.625}}
-
     return (
         <Container sx={styles.Container}>
             <Typography variant={'h1'} sx={styles.Title}>Working with GET request</Typography>
@@ -47,8 +45,12 @@ export const Users = ({usersQuantityToShowRef}: UsersType) => {
                     />
                 ))}
             </Box>
-            {usersQuantityToShowRef.current < data?.total_users! &&
-                <Button width={'120px'} onClick={handleRefetch}>Show more</Button>}
+            {isLoading
+                ? <CircularProgress color={'secondary'}/>
+                : usersQuantityToShowRef.current < data?.total_users! && isFetching
+                    ? <CircularProgress color={'secondary'}/>
+                    : <Button width={'120px'} onClick={handleRefetch}>Show more</Button>
+            }
         </Container>
     );
 };

@@ -13,12 +13,14 @@ import {
     RadioGroup,
     FormLabel,
     Input,
-    Image
+    Image,
+    CircularProgress
 } from '@common'
 import {Button} from '@components'
 
+import {emailRegex, nameRegex, phoneRegex, photoFormatRegex} from "./utils";
+
 import * as styles from './FormStyles'
-import {emailRegex, nameRegex, phoneRegex, photoFormatRegex} from "@components/Form/utils";
 import {
     useLazyGetPositionsQuery,
     useLazyGetTokenQuery,
@@ -38,7 +40,7 @@ type Resolution = {
     height: number
 }
 
-type FormType = {
+export type FormType = {
     usersQuantityToShowRef: { current: number }
 }
 
@@ -62,7 +64,7 @@ export const Form = ({usersQuantityToShowRef}: FormType) => {
     })
     const [getPositions, {data}] = useLazyGetPositionsQuery()
     const [getToken, {data: tokenData}] = useLazyGetTokenQuery()
-    const [register, {data: registerData}] = useRegisterMutation()
+    const [register, {data: registerData, isLoading}] = useRegisterMutation()
 
     const [photoName, setPhotoName] = useState('')
 
@@ -220,7 +222,10 @@ export const Form = ({usersQuantityToShowRef}: FormType) => {
                                                 const img = document.createElement('img')
                                                 img.src = URL.createObjectURL((file as Blob))
                                                 img.onload = function () {
-                                                    imgRef.current = {width: img.naturalWidth, height: img.naturalHeight}
+                                                    imgRef.current = {
+                                                        width: img.naturalWidth,
+                                                        height: img.naturalHeight
+                                                    }
                                                 }
                                                 onChange(file)
                                             }}/>
@@ -230,11 +235,15 @@ export const Form = ({usersQuantityToShowRef}: FormType) => {
                             sx={styles.getFileInput(!!errors.photo)}
                             label={'Upload'}
                         />
-                        <Box sx={styles.getFileNameBox(!!errors.photo)}>{photoName ? photoName : 'Upload your photo'}</Box>
+                        <Box
+                            sx={styles.getFileNameBox(!!errors.photo)}>{photoName ? photoName : 'Upload your photo'}</Box>
                         <Box sx={styles.FileHelperText}>{errors.photo?.message}</Box>
                     </FormControl>
 
-                    <Button disabled={!isValid} type={'submit'}>Sign up</Button>
+                    {isLoading
+                        ? <CircularProgress color={'secondary'} sx={styles.LoaderSpinner}/>
+                        : <Button disabled={!isValid} type={'submit'}>Sign up</Button>
+                    }
                 </Box>
             }
         </Container>

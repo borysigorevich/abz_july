@@ -22,6 +22,7 @@ export const User = ({photo, name, email, phone, position}: UserType) => {
                         src={photo}
                         width={70}
                         height={70}
+                        layout={'fixed'}
                         style={styles.Image}
                     />
                 </Box>

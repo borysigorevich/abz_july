@@ -26,8 +26,11 @@ export const InputBox: SxProps = {
 export const getTextField: getStyles = error => ({
     '&.MuiTextField-root': {
         mb: error ? '27px' : '49px',
-        maxHeight: '54px'
     },
+
+    '& .MuiOutlinedInput-root': {
+        maxHeight: '54px'
+    }
 })
 
 export const RadioControl: SxProps = {
@@ -82,5 +85,9 @@ export const FileHelperText: SxProps = {
     left: '14px',
     fontSize: '12px',
     lineHeight: '14px'
+}
+
+export const LoaderSpinner: SxProps = {
+    alignSelf: 'center'
 }
 

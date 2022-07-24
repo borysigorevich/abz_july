@@ -15,6 +15,8 @@ export const Header = () => {
                             src={'/Logo.svg'}
                             width={104}
                             height={26}
+                            priority={true}
+                            layout={'fixed'}
                         />
                     </Box>
                     <Box sx={styles.ButtonBox}>
