@@ -38,10 +38,10 @@ export const RadioControl: SxProps = {
     '& .MuiFormLabel-root': {
         alignSelf: 'flex-start'
     },
-    mb: '41px',
+    mb: '37px',
 
     '& .MuiRadio-root': {
-        p: '9px 9px 2px'
+        p: '6px 9px'
     },
 
 }
