@@ -45,10 +45,10 @@ export const Users = ({usersQuantityToShowRef}: UsersType) => {
                     />
                 ))}
             </Box>
-            {isLoading
+            {isLoading || isFetching
                 ? <CircularProgress color={'secondary'}/>
-                : usersQuantityToShowRef.current < data?.total_users! && isFetching
-                    ? <CircularProgress color={'secondary'}/>
+                : data?.total_users! < usersQuantityToShowRef.current
+                    ? null
                     : <Button width={'120px'} onClick={handleRefetch}>Show more</Button>
             }
         </Container>
